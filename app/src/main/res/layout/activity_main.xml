@@ -32,6 +32,7 @@
             android:id="@+id/no_alcohol"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
             android:layout_marginStart="16dp"
             android:text="Non Alcohol">
 
@@ -42,6 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:onClick="onRadioButtonClicked"
             android:text="Cheapest Wine">
 
         </RadioButton>
@@ -51,6 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:onClick="onRadioButtonClicked"
             android:text="From Cart">
 
         </RadioButton>
@@ -60,6 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:onClick="onRadioButtonClicked"
             android:text="All wine">
 
         </RadioButton>

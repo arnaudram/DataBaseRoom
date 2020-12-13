@@ -1,5 +1,6 @@
 package com.example.databaseroom
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
@@ -11,8 +12,10 @@ import com.example.databaseroom.database.WineDatabase
 import com.example.databaseroom.repository.WineRepository
 import com.example.databaseroom.ui.ListActivityViewModel
 import com.example.databaseroom.ui.ListActivityViewModelFoctory
+import com.example.databaseroom.utils.WineFilter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class ListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,10 +28,17 @@ class ListActivity : AppCompatActivity() {
         val listActivityViewModel=ViewModelProvider(this,listActivityViewModelFoctory)[ListActivityViewModel::class.java]
 
         val recyclerView=findViewById<RecyclerView>(R.id.recycleview)
+        
+        val receivedFilter=intent.getStringExtra("filtervalue")
+        Timber.e(" received intent:$receivedFilter")
+        if (receivedFilter != null) {
+            listActivityViewModel.setFilter(receivedFilter)
+        }
+
 
         val adapter=WineAdapter()
 
-        listActivityViewModel.allWines.observe(this, Observer {
+        listActivityViewModel.wines.observe(this, Observer {
            lifecycleScope.launch {
                it.collectLatest {
                   adapter.submitList(it)

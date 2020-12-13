@@ -15,6 +15,17 @@ class WineRepository(private val wineDao: WineDao) {
         return wineDao.getAllWine().distinctUntilChanged()
     }
 
+    fun getWineFromCart(): Flow<List<Wine>> {
+        return wineDao.getWineFromCart(true)
+    }
+    fun getCheapestWine(): Flow<List<Wine>> {
+        return wineDao.findCheapestWine()
+    }
+
+    fun getNonAlcohol(): Flow<List<Wine>> {
+        return wineDao.getNonAlcohol()
+    }
+
     companion object{
         private val instance:WineRepository?=null
         fun getInstance(context:Context): WineRepository {
